@@ -15,7 +15,7 @@ class New extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
-        primaryColor: Colors.greenAccent,
+        primaryColor: Colors.white,
       ),
 
       home: Flexible(
@@ -31,18 +31,6 @@ class New extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-}
-
-class Person {
-  //modal class for Person object
-  String sno, name, profession, timing;
-  bool? avalaibility;
-  Person(
-      {required this.sno,
-      required this.name,
-      required this.profession,
-      required this.timing,
-      required this.avalaibility});
 }
 
 class threecol extends StatefulWidget {
@@ -63,7 +51,7 @@ class _threecolState extends State<threecol> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           FittedBox(
@@ -104,63 +92,140 @@ class _threecolState extends State<threecol> {
   }
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+/* class Update {
+  //modal class for Person object
+  String update, timing;
 
-class _MyAppState extends State<MyApp> {
-  List<Person> persons = [];
+  Update({
+    required this.update,
+    required this.timing,
+  });
+} */
 
-  @override
-  void initState() {
-    //adding item to list, you can add using json from network
-    persons.add(Person(
-        sno: "1",
-        name: "Hari Prasad Chaudhary",
-        profession: "Cardiologist",
-        timing: "8 am- 1 pm",
-        avalaibility: false));
-
-    super.initState();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 10, 0, 10),
             child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: persons.map((personone) {
-                  return Container(
-                    color: Colors.green,
-                    child: Card(
-                      child: ListTile(
-                        tileColor: Colors.green,
-                        title: Text(personone.name),
-                        subtitle: Text(
-                            personone.profession + "\n" + personone.timing),
-                        leading: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.black,
-                          child: Follow(),
-                        ),
-                        trailing: Checkbox(
-                          onChanged: (newValue) =>
-                              setState(() => personone.avalaibility = newValue),
-                          value: personone.avalaibility,
+              decoration: const BoxDecoration(
+                color: Color(0xFFffffff),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0, // soften the shadow
+                    spreadRadius: 5.0, //extend the shadow
+                    offset: Offset(
+                      5.0, // Move to right 5  horizontally
+                      5.0, // Move to bottom 5 Vertically
+                    ),
+                  )
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), //or 15.0
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          "Dr Pawan is going to be absent tommorrow",
+                          style: TextStyle(
+                            fontFamily: 'BebasNeue',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 2.0,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                      Align(
+                        alignment: Alignment(0.95, 0.95),
+                        child: Text(
+                          "11:10 am",
+                          style: TextStyle(
+                            fontFamily: 'BebasNeue',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 2.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
-          )),
+          ),
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFFffffff),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 15.0, // soften the shadow
+                    spreadRadius: 5.0, //extend the shadow
+                    offset: Offset(
+                      5.0, // Move to right 5  horizontally
+                      5.0, // Move to bottom 5 Vertically
+                    ),
+                  )
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), //or 15.0
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          "New Dentistry Department added",
+                          style: TextStyle(
+                            fontFamily: 'BebasNeue',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 2.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment(0.95, 0.95),
+                        child: Text(
+                          "1:10 pm",
+                          style: TextStyle(
+                            fontFamily: 'BebasNeue',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 2.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          //add more eleemnts here
+        ],
+      ),
     );
   }
 }
