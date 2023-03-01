@@ -1,33 +1,25 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const New());
+  runApp(const MyApp());
 }
 
-int followers = 5443;
+int followers = 420;
 
-class New extends StatelessWidget {
-  const New({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
-        primaryColor: Colors.white,
       ),
-
-      home: Flexible(
-        child: MyHomePage(),
-      ),
-
-      //threecol(), // this is the one i added which is cozing the problem i was expecting the profile at the top then three column division like in
-      //https://stackoverflow.com/questions/61616336/i-want-to-divide-my-row-into-1-4-ratio-in-flutter but it is cozing pixel oveflow
-      //done for avoiding error in Media Query
-      /* builder: (context, child) {
-        return const threecol();
-      }, */
+      home: Column(children: [
+        Flexible(
+          child: MyHomePage(),
+        )
+      ]),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -55,19 +47,93 @@ class _threecolState extends State<threecol> {
       body: Column(
         children: [
           FittedBox(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0), //or 15.0
-              child: Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width,
-                child: _FakedImage(),
-              ),
+            //or 15.0
+            child: Container(
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              child: _FakedImage(),
             ),
           ),
-          MyApp(),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 30, 5),
+                child: Material(
+                  shape: Border(
+                    bottom: BorderSide(
+                      width: 2.5,
+                      color: Colors.black,
+                    ),
+                  ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFffffff),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 5.0, // soften the shadow
+                          spreadRadius: 2.5, //extend the shadow
+
+                          offset: Offset(
+                            5.0, // Move to right 5  horizontally
+                            5.0, // Move to bottom 5 Vertically
+                          ),
+                        )
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Center(
+                        child: Text(
+                          'Profile',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 0, 10, 5),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFffffff),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0, // soften the shadow
+                        spreadRadius: 2.5, //extend the shadow
+                        offset: Offset(
+                          5.0, // Move to right 5  horizontally
+                          5.0, // Move to bottom 5 Vertically
+                        ),
+                      )
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Center(
+                      child: Text(
+                        'Notifications',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Mylist(),
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         items: const <BottomNavigationBarItem>[
@@ -92,18 +158,8 @@ class _threecolState extends State<threecol> {
   }
 }
 
-/* class Update {
-  //modal class for Person object
-  String update, timing;
-
-  Update({
-    required this.update,
-    required this.timing,
-  });
-} */
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Mylist extends StatelessWidget {
+  const Mylist({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +172,7 @@ class MyApp extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 color: Color(0xFFffffff),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey,
@@ -137,29 +194,16 @@ class MyApp extends StatelessWidget {
                       Expanded(
                         child: Text(
                           textAlign: TextAlign.start,
-                          "Dr Pawan is going to be absent tommorrow",
+                          "Works at IIT Roorkee Hospital from 8 am - 1 pm",
                           style: TextStyle(
                             fontFamily: 'BebasNeue',
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.normal,
                             letterSpacing: 2.0,
                             color: Colors.black,
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment(0.95, 0.95),
-                        child: Text(
-                          "11:10 am",
-                          style: TextStyle(
-                            fontFamily: 'BebasNeue',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 2.0,
-                            color: Colors.black,
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -172,6 +216,7 @@ class MyApp extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 color: Color(0xFFffffff),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey,
@@ -193,29 +238,16 @@ class MyApp extends StatelessWidget {
                       Expanded(
                         child: Text(
                           textAlign: TextAlign.start,
-                          "New Dentistry Department added",
+                          "Works at Roorkee Laboratory from 2 pm - 5 pm",
                           style: TextStyle(
                             fontFamily: 'BebasNeue',
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             fontWeight: FontWeight.normal,
                             letterSpacing: 2.0,
                             color: Colors.black,
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment(0.95, 0.95),
-                        child: Text(
-                          "1:10 pm",
-                          style: TextStyle(
-                            fontFamily: 'BebasNeue',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 2.0,
-                            color: Colors.black,
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -238,9 +270,9 @@ class _FakedImage extends StatefulWidget {
 }
 
 class _FakedImageState extends State<_FakedImage> {
-  String college = 'IIT Roorkee Hospital';
-
-  String address = 'Haridwar ,Roorkee';
+  String doctor = 'Dr Hari Prasad Chaudhary';
+  String specialization = 'Physician';
+  String degree = 'MBBS , MD';
 
   int visitors = 12003;
 
@@ -259,13 +291,17 @@ class _FakedImageState extends State<_FakedImage> {
             // color: Color.fromARGB(255, 15, 147, 59),
             opacity: const AlwaysStoppedAnimation<double>(0.5)), //Image.asset
         // Image.asset
-        CircleAvatar(
-          radius: 72,
-          backgroundColor: Colors.black,
-          child: CircleAvatar(
-            radius: 70.0,
-            backgroundImage: AssetImage('images/iitrh.jfif'),
-          ),
+
+        Container(
+          alignment: Alignment(0.4, 0.4),
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width * 0.25,
+          decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.black),
+              image: DecorationImage(
+                  image: AssetImage(
+                      'images/portrait-happy-young-handsome-indian-man-doctor-smiling-studio-shot-against-white-background-137823661.jpg'),
+                  fit: BoxFit.cover)),
         ),
 
         Container(
@@ -273,13 +309,13 @@ class _FakedImageState extends State<_FakedImage> {
           width: MediaQuery.of(context).size.width,
           alignment: Alignment(0.8, 0.0),
           child: Text(
-            '$college, \n $address ',
+            '$doctor, \n Degree:$degree, \n Specialization:$specialization',
             style: TextStyle(
               fontFamily: 'Pacifico',
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
               letterSpacing: 2.0,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),
@@ -389,8 +425,6 @@ class _FollowState extends State<Follow> {
   }
 }
 
-// Atul's home page code below
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -399,7 +433,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // use this in ur backend later on
+  int _selectedIndex = 0; // use this in ur backend later on
   /*static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -417,6 +451,11 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
   */
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -443,11 +482,11 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body:
-          threecol(), //this is where i added my class to integrate with atul's home page
+
       /* body: Center( //after backend 
         child: _widgetOptions.elementAt(_selectedIndex),
       ), */
+      body: threecol(),
     );
   }
 }
@@ -526,84 +565,3 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 }
-
-/* return Draggable(                    //use this code for swiping left and right after backend implementation
-      //childWhenDragging: *insert next page*
-      onDragEnd: (drag) {
-        if (drag.velocity.pixelsPerSecond.dx < 0) {
-          print('Seiped l');
-        } else {
-          print('Swiped r');
-        }
-      },
-      feedback: Flexible(
-        child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: persons.map((personone) {
-                    return Container(
-                      color: Colors.green,
-                      child: Card(
-                        child: ListTile(
-                          tileColor: Colors.green,
-                          title: Text(personone.name),
-                          subtitle: Text(
-                              personone.profession + "\n" + personone.timing),
-                          leading: Container(
-                            width: 50,
-                            height: 50,
-                            color: Colors.black,
-                            child: Follow(),
-                          ),
-                          trailing: Checkbox(
-                            onChanged: (newValue) => setState(
-                                () => personone.avalaibility = newValue),
-                            value: personone.avalaibility,
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            )),
-      ),
-      child: Flexible(
-        child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: persons.map((personone) {
-                    return Container(
-                      color: Colors.green,
-                      child: Card(
-                        child: ListTile(
-                          tileColor: Colors.green,
-                          title: Text(personone.name),
-                          subtitle: Text(
-                              personone.profession + "\n" + personone.timing),
-                          leading: Container(
-                            width: 50,
-                            height: 50,
-                            color: Colors.black,
-                            child: Follow(),
-                          ),
-                          trailing: Checkbox(
-                            onChanged: (newValue) => setState(
-                                () => personone.avalaibility = newValue),
-                            value: personone.avalaibility,
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            )),
-      ),
-    ); */
