@@ -1,0 +1,40 @@
+name: medicine_search_result
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.3 <3.0.0'
+
+dependencies:
+  chewie: ^1.3.5
+  flutter:
+    sdk: flutter
+  video_player: ^2.4.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+  fonts:
+    - family: PlayfairDisplay
+    - fonts:
+        - asset: assets/fonts/PlayfairDisplay-Black.ttf
+        - asset: assets/fonts/PlayfairDisplay-BlackItalic.ttf
+        - asset: assets/fonts/PlayfairDisplay-Bold.ttf
+        - asset: assets/fonts/PlayfairDisplay-BoldItalic.ttf
+        - asset: assets/fonts/PlayfairDisplay-ExtraBold.ttf
+        - asset: assets/fonts/PlayfairDisplay-ExtraBoldItalic.ttf
+        - asset: assets/fonts/PlayfairDisplay-Italic.ttf
+        - asset: assets/fonts/PlayfairDisplay-Medium.ttf
+        - asset: assets/fonts/PlayfairDisplay-MediumItalic.ttf
+        - asset: assets/fonts/PlayfairDisplay-Regular.ttf
+        - asset: assets/fonts/PlayfairDisplay-SemiBold.ttf
+        - asset: assets/fonts/PlayfairDisplay-SemiBoldItalic.ttf
