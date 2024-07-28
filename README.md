@@ -8,3 +8,6 @@ Atlas is a one stop solution for all problems of medical/hospital/doctor/ambulan
 5. The app will have health articles for patients and research papers for doctors so that our user may maintain good health.
 6. The app will guide you in a big hospital by providing indoor mapping of hospitals so that you can go to a hospital without anyone's help.
 7. The profile of doctors will help patients to know when and where the doctor is available right now.
+
+#Video Demo
+https://www.youtube.com/shorts/o3Idnv2eDEo
